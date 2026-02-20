@@ -31,21 +31,29 @@ const DynamicContent = ({ image }) => {
     );
 };
 
-const PriceCard = ({ title, price, image, features, onClick, btnText }) => (
-    <div className="card-premium">
-        <DynamicContent image={image} />
-        <div className="card-title">{title}</div>
-        <div className="card-price">{price}</div>
-        <ul className="pricing-features">
-            {features.map((f, i) => (
-                <li key={i}>{f}</li>
-            ))}
-        </ul>
-        <button className="btn-circle-action" onClick={onClick}>
-            {btnText.split(' ').length > 1 ? <>{btnText.split(' ')[0]}<br />{btnText.split(' ')[1]}</> : btnText}
-        </button>
-    </div>
-);
+const PriceCard = ({ title, price, image, features, whatsappMsg, desc, lang }) => {
+    const whatsappNumber = "201204951383";
+    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`;
+
+    return (
+        <div className="card-premium pricing-card">
+            <DynamicContent image={image} />
+            <div className="card-title">{title}</div>
+            <div className="card-price">{price}</div>
+            <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginBottom: '20px', minHeight: '60px' }}>{desc}</p>
+            <ul className="pricing-features">
+                {features.map((f, i) => (
+                    <li key={i}>✓ {f}</li>
+                ))}
+            </ul>
+            <a href={waLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <button className="btn-circle-action">
+                    {lang === 'EN' ? 'Order' : 'اطلب'}<br />{lang === 'EN' ? 'Now' : 'الآن'}
+                </button>
+            </a>
+        </div>
+    );
+};
 
 const SelectionModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
@@ -79,51 +87,84 @@ const ServicesPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { lang, t } = React.useContext(LanguageContext);
 
+    const whatsappNumber = "201204951383";
+    const getWhatsAppLink = (message) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
     const webServices = [
         {
-            title: 'Business Start',
-            price: '16,000 EGP',
+            title: lang === 'EN' ? 'Business Start' : 'باقة Business Start',
+            price: '9,500 EGP',
             image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1964',
-            features: ['Responsive Landing Page', 'Basic SEO Setup', 'Contact Form Integration', 'Hosting Setup'],
-            btnText: 'Order Now'
+            features: lang === 'EN' ?
+                ['Professional Landing Page', 'High Performance', 'Ads Optimization', 'Lead Generation'] :
+                ['صفحة هبوط احترافية', 'سرعة فائقة', 'مثالية للإعلانات', 'جمع بيانات العملاء'],
+            desc: lang === 'EN' ?
+                'Professional Landing Page, ultra-fast, and perfect for ads and lead conversion.' :
+                'صفحة هبوط (Landing Page) احترافية، سريعة جداً، ومثالية للإعلانات وجمع بيانات العملاء.',
+            whatsappMsg: 'أهلاً، أرغب في الاستفسار عن باقة Business Start لعمل Landing Page'
         },
         {
-            title: 'Corporate Pro',
-            price: '40,000 EGP',
+            title: lang === 'EN' ? 'Corporate Pro' : 'باقة Corporate Pro',
+            price: '28,000 EGP',
             image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015',
-            features: ['Multi-page Website', 'CMS Integration', 'Advanced UI/UX', 'Performance Optimization', 'Analytics Dashboard'],
-            btnText: 'Order Now'
+            features: lang === 'EN' ?
+                ['Complete Business Site', 'Easy CMS Panel', 'Modern UI/UX', 'Brand Focus'] :
+                ['موقع شركات متكامل', 'لوحة تحكم سهلة', 'تصميم عصري UI/UX', 'تعزيز العلامة التجارية'],
+            desc: lang === 'EN' ?
+                'Full corporate website with an easy-to-use CMS and modern design that reflects your brand strength.' :
+                'موقع متكامل للشركات مع لوحة تحكم سهلة لتعديل المحتوى وتصميم عصري (UI/UX) يعكس قوة علامتك التجارية.',
+            whatsappMsg: 'أهلاً، أعجبني عرض Corporate Pro وأريد البدء في تصميم موقع لشركتي'
         },
         {
-            title: 'Enterprise Store',
-            price: '72,000 EGP',
+            title: lang === 'EN' ? 'Enterprise Store' : 'باقة Enterprise Store',
+            price: '55,000 EGP',
             image: 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2089',
-            features: ['Full E-commerce System', 'Payment Gateway Integration', 'Inventory Management', 'User Accounts', 'Custom CRM'],
-            btnText: 'Order Now'
+            features: lang === 'EN' ?
+                ['Full E-commerce Store', 'Online Payment', 'Stock Management', 'CRM Dashboard'] :
+                ['متجر إلكتروني شامل', 'دفع إلكتروني (فيزا)', 'إدارة مخازن', 'لوحة تحكم مبيعات CRM'],
+            desc: lang === 'EN' ?
+                'Comprehensive e-commerce system with payment gateway, inventory management, and CRM dashboard.' :
+                'متجر إلكتروني شامل بنظام دفع بالفيزا، إدارة مخازن، ولوحة تحكم لمتابعة المبيعات والعملاء (CRM).',
+            whatsappMsg: 'أهلاً، أريد تفاصيل أكثر عن باقة Enterprise Store لإنشاء متجر إلكتروني متكامل'
         }
     ];
 
     const systemServices = [
         {
-            title: 'Basic Management',
-            price: '60,000 EGP',
+            title: lang === 'EN' ? 'Clinic/Office Management' : 'نظام إدارة العيادات والمكاتب',
+            price: '12,000 EGP',
             image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070',
-            features: ['Internal Admin Panel', 'Database Management', 'Employee Tracking', 'Sales Reports'],
-            btnText: 'Order Now'
+            features: lang === 'EN' ?
+                ['Patient/Client Records', 'Booking System', 'Smart Reports', 'Local/Cloud Support'] :
+                ['إدارة ملفات العملاء', 'نظام المواعيد', 'تقارير ذكية', 'دعم سحابي ومحلي'],
+            desc: lang === 'EN' ?
+                'Smart management system for clinics and offices to organize clients and workflows.' :
+                'نظام إدارة ذكي للعيادات والمكاتب لتنظيم شؤون العملاء وسير العمل بدقة.',
+            whatsappMsg: 'أهلاً حبيبة، أريد الاستفسار عن نظام إدارة العيادات والمكاتب الذكي'
         },
         {
-            title: 'Advanced ERP',
-            price: '140,000 EGP',
+            title: lang === 'EN' ? 'Inventory & Sales' : 'إدارة المخازن والمبيعات',
+            price: '25,000 EGP',
             image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070',
-            features: ['Supply Chain Integration', 'Cloud Synchronized', 'AI Driven Insights', 'HR & Payroll System'],
-            btnText: 'Order Now'
+            features: lang === 'EN' ?
+                ['Advanced Inventory', 'Barcode Integration', 'Profit Analysis', 'Suppliers Manager'] :
+                ['إدارة مخازن متطورة', 'دعم الباركود', 'تحليل الأرباح', 'إدارة الموردين'],
+            desc: lang === 'EN' ?
+                'Advanced inventory and sales tracking system for corporate efficiency.' :
+                'نظام متطور لإدارة المخازن وحركة المبيعات مصمم لرفع كفاءة شركتك.',
+            whatsappMsg: 'أهلاً، مهتم بنظام إدارة المخازن والمبيعات المتقدم لشركتي'
         },
         {
-            title: 'Custom Ecosystem',
-            price: 'Custom',
+            title: lang === 'EN' ? 'Enterprise ERP' : 'نظام متكامل (ERP) للمؤسسات',
+            price: '45,000 EGP',
             image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1974',
-            features: ['Cross-platform Integration', 'Blockchain Security', 'Scalable Microservices', '24/7 Dedicated Support'],
-            btnText: 'Get Quote'
+            features: lang === 'EN' ?
+                ['Full Department Integration', 'Financial Planning', 'Scalable Architecture', '24/7 Support'] :
+                ['ربط كافة القطاعات', 'تخطيط مالي متكامل', 'بنية قابلة للتوسع', 'دعم فني 24/7'],
+            desc: lang === 'EN' ?
+                'Integrated ERP system for large corporations to manage all sectors seamlessly.' :
+                'نظام ERP متكامل للمؤسسات الكبيرة لإدارة كافة قطاعات المؤسسة في مكان واحد.',
+            whatsappMsg: 'أهلاً، أريد تفاصيل نظام الـ ERP المتكامل لإدارة كافة قطاعات المؤسسة'
         }
     ];
 
@@ -153,7 +194,7 @@ const ServicesPage = () => {
                     </div>
                     <div className="pricing-grid">
                         {webServices.map((item, i) => (
-                            <PriceCard key={i} {...item} btnText={t.viewProject} onClick={() => setIsModalOpen(true)} />
+                            <PriceCard key={i} {...item} lang={lang} />
                         ))}
                     </div>
                 </div>
@@ -167,7 +208,7 @@ const ServicesPage = () => {
                     </div>
                     <div className="pricing-grid">
                         {systemServices.map((item, i) => (
-                            <PriceCard key={i} {...item} btnText={item.btnText === 'Get Quote' ? (lang === 'EN' ? 'Get Quote' : 'اطلب عرض سعر') : t.viewProject} onClick={() => setIsModalOpen(true)} />
+                            <PriceCard key={i} {...item} lang={lang} />
                         ))}
                     </div>
                 </div>
