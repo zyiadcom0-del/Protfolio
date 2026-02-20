@@ -279,7 +279,14 @@ section {
     transform: translateX(-5px);
 }
 
+/* Font Import for Arabic */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+
 /* RTL Adjustments */
+[dir="rtl"] {
+    font-family: 'Cairo', sans-serif !important;
+}
+
 [dir="rtl"] .fixed-side-bar {
     right: auto;
     left: 40px;
@@ -295,8 +302,58 @@ section {
     transform: translateX(5px);
 }
 
-[dir="rtl"] .hero-section {
+[dir="rtl"] .hero-section,
+[dir="rtl"] .container,
+[dir="rtl"] section,
+[dir="rtl"] .footer-hero-wrap,
+[dir="rtl"] .footer-bottom,
+[dir="rtl"] .modal-box {
     text-align: right;
+}
+
+[dir="rtl"] .header-left-group {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .logo {
+    margin-right: 0;
+}
+
+[dir="rtl"] .side-lang-btn {
+    flex-direction: row-reverse;
+    gap: 8px;
+}
+
+[dir="rtl"] .btn-circle-action {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+[dir="rtl"] .pricing-features li {
+    padding-right: 0;
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .scroll-indicators-mobile {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-img-circle {
+    margin-right: 0;
+    margin-left: 30px;
+}
+
+@media (max-width: 768px) {
+    [dir="rtl"] .footer-img-circle {
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
 }
 
 [dir="rtl"] .hero-overlay {
