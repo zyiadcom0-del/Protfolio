@@ -82,21 +82,21 @@ const ServicesPage = () => {
     const webServices = [
         {
             title: 'Business Start',
-            price: '$400',
+            price: '16,000 EGP',
             image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1964',
             features: ['Responsive Landing Page', 'Basic SEO Setup', 'Contact Form Integration', 'Hosting Setup'],
             btnText: 'Order Now'
         },
         {
             title: 'Corporate Pro',
-            price: '$1000',
+            price: '40,000 EGP',
             image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015',
             features: ['Multi-page Website', 'CMS Integration', 'Advanced UI/UX', 'Performance Optimization', 'Analytics Dashboard'],
             btnText: 'Order Now'
         },
         {
             title: 'Enterprise Store',
-            price: '$1800',
+            price: '72,000 EGP',
             image: 'https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=2089',
             features: ['Full E-commerce System', 'Payment Gateway Integration', 'Inventory Management', 'User Accounts', 'Custom CRM'],
             btnText: 'Order Now'
@@ -106,14 +106,14 @@ const ServicesPage = () => {
     const systemServices = [
         {
             title: 'Basic Management',
-            price: '$1500',
+            price: '60,000 EGP',
             image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070',
             features: ['Internal Admin Panel', 'Database Management', 'Employee Tracking', 'Sales Reports'],
             btnText: 'Order Now'
         },
         {
             title: 'Advanced ERP',
-            price: '$3500',
+            price: '140,000 EGP',
             image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070',
             features: ['Supply Chain Integration', 'Cloud Synchronized', 'AI Driven Insights', 'HR & Payroll System'],
             btnText: 'Order Now'
